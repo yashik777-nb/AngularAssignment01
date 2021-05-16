@@ -40,19 +40,21 @@
           <label for="issueSeverity">Severity</label>
         </div>
 
-        <div class="form-group m-2">
-          <label>Status: </label>
-          <div class="form-check form-check-inline m-2">
+        <div class="form-check form-check-inline mb-2">
+          <label>Status:</label>
+          <label
+            *ngFor="let status of statusData; let i = index"
+            class="form-check-label"
+          >
             <input
-              class="form-check-input"
               type="radio"
-              name="inlineRadioOptions"
-              id="inlineRadio1"
-              value="option1"
+              name="status"
+              class="m-2"
+              id="status{{ i }}"
+              [value]="status"
               [(ngModel)]="issueStatus"
-            />
-            <label class="form-check-label" for="inlineRadio1">Open</label>
-          </div>
+            />{{ status }}
+          </label>
         </div>
         <button
           type="submit"
@@ -67,7 +69,7 @@
   </div>
   <div class="row">
     <div class="col-md-10">
-      <table class="table">
+      <table class="table table-bordered text-center">
         <thead>
           <tr>
             <th scope="col">Issue Description</th>
@@ -86,7 +88,3 @@
     </div>
   </div>
 </div>
-
-<p class="lead">Description: {{ issueDescription }}</p>
-<p class="lead">Severity: {{ issueSeverity }}</p>
-<p class="lead">Status: {{ issueStatus }}</p>
